@@ -57,7 +57,7 @@ class MoneyTransferTest {
         assertEquals(expectedSecondBalance, actualSecondBalance);
     }
 
-   /* @Test
+    @Test
     public void shouldTransferToSecondCard() {
         //arrange
         // сумма перевода
@@ -83,6 +83,6 @@ class MoneyTransferTest {
         //assertion
         assertEquals(expectedFirstBalance, actualFirstBalance);
         assertEquals(expectedSecondBalance, actualSecondBalance);
-    }*/
+    }
 }
 

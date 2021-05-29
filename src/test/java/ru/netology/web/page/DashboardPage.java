@@ -1,7 +1,6 @@
 package ru.netology.web.page;
 
 import com.codeborne.selenide.SelenideElement;
-import ru.netology.web.data.DataHelper;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -16,23 +15,19 @@ public class DashboardPage {
         heading.shouldBe(visible);
     }
 
-    public TransferPage getTransferActionForm(SelenideElement button, DataHelper.CardInfo cardInfo) {
-        button.click();
-
-        return new TransferPage(cardInfo);
-    }
-
-    public TransferPage getTransferPageForFirstCard() {
+     public TransferPage getTransferPageForFirstCard() {
         SelenideElement firstCardButton = $$("[data-test-id=action-deposit]").first();
+        firstCardButton.click();
 
-        return getTransferActionForm(firstCardButton, DataHelper.getFirstCardInfo());
+        return new TransferPage();
     }
 
 
     public TransferPage getTransferPageForSecondCard() {
-        SelenideElement secondCardButton = $$("[data-test-id=action-deposit]").get(1);
+        SelenideElement secondCardButton = $$("[data-test-id=action-deposit]").last();
+        secondCardButton.click();
 
-        return getTransferActionForm(secondCardButton, DataHelper.getSecondCardInfo());
+        return new TransferPage();
     }
 
     public int getFirstCardBalance() {
@@ -52,12 +47,12 @@ public class DashboardPage {
         final String balanceFinish = " р.";
 
         String text = element.getText();
-        System.out.println(text);
+        //System.out.println(text);
         int start = text.indexOf(balanceStart);
         int finish = text.indexOf(balanceFinish);
         String balance = text.substring(start + balanceStart.length(), finish);
 
-        System.out.println("[getBalance]: " + balance);
+        //System.out.println("[getBalance]: " + balance);
         return Integer.parseInt(balance);
     }
 

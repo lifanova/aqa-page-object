@@ -93,6 +93,37 @@ class MoneyTransferTest {
         assertEquals(expectedSecondBalance, actualSecondBalance);
     }
 
+    @Test
+    public void shouldTransferMoreThanBalance(){
+        //arrange
+        // сумма перевода
+        int amount = 15000;
 
+        // Основная страница, на которой происходят операции
+        DashboardPage dashboardPage = shouldLogin();
+
+        // expected
+        int firstBalance = dashboardPage.getFirstCardBalance();
+        int secondBalance = dashboardPage.getSecondCardBalance();
+
+
+        // dashboardPage - выбираем карту, на которую переводим, и кликаем против нее на пополнить
+        TransferPage transferPage = dashboardPage.getTransferPageForFirstCard();
+
+        //act
+        // осуществляем перевод: передаем сумму перевода (amount) и инфу о карте, с к-рой списываем
+        DataHelper.CardInfo secondCard = DataHelper.getSecondCardInfo();
+        transferPage.transferToCard(amount, secondCard.getNumber());
+
+        int actualFirstBalance = dashboardPage.getFirstCardBalance();
+        int actualSecondBalance = dashboardPage.getSecondCardBalance();
+
+        System.out.println(" " + firstBalance + ", " + actualFirstBalance);
+        System.out.println(" " + secondBalance + ", " + actualSecondBalance);
+
+        //assertion
+        assertEquals(firstBalance, actualFirstBalance);
+        assertEquals(secondBalance, actualSecondBalance);
+    }
 }
 

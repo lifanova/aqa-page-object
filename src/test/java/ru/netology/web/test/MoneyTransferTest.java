@@ -7,6 +7,8 @@ import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.LoginPage;
 
+import java.util.Random;
+
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -36,7 +38,8 @@ class MoneyTransferTest {
         int secondBalance = dashboardPage.getSecondCardBalance();
 
         // сумма перевода
-        int amount = 1000;
+        Random random = new Random();
+        int amount = random.nextInt(secondBalance);
 
         // expected
         int expectedFirstBalance = firstBalance + amount;
@@ -67,7 +70,8 @@ class MoneyTransferTest {
         int secondBalance = dashboardPage.getSecondCardBalance();
 
         // сумма перевода
-        int amount = 1000;
+        Random random = new Random();
+        int amount = random.nextInt(secondBalance);
 
         // expected
         int expectedFirstBalance = firstBalance - amount;

@@ -47,12 +47,11 @@ public class DashboardPage {
         final String balanceFinish = " р.";
 
         String text = element.getText();
-        //System.out.println(text);
+
         int start = text.indexOf(balanceStart);
         int finish = text.indexOf(balanceFinish);
         String balance = text.substring(start + balanceStart.length(), finish);
 
-        //System.out.println("[getBalance]: " + balance);
         return Integer.parseInt(balance);
     }
 

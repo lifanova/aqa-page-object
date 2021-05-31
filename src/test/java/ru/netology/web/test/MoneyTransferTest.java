@@ -71,7 +71,7 @@ class MoneyTransferTest {
 
         // сумма перевода
         Random random = new Random();
-        int amount = random.nextInt(secondBalance);
+        int amount = random.nextInt(firstBalance);
 
         // expected
         int expectedFirstBalance = firstBalance - amount;
